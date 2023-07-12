@@ -1,21 +1,19 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { NewsModule } from './news/news.module';
 import { DevelopersModule } from './developers/developers.module';
-import { EventsModule } from './events/events.module';
-import { ReleasesModule } from './releases/releases.module';
 import { GenresModule } from './genres/genres.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      expandVariables: true,
+    }),
     NewsModule,
     DevelopersModule,
-    EventsModule,
-    ReleasesModule,
     GenresModule,
+    PrismaModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
